@@ -66,3 +66,7 @@ check: $(CSI_PROTO)
 	awk '{ if (length > 72) print NR, $$0 }' $? | diff - /dev/null
 
 .PHONY: clean clobber check
+
+
+genproto:
+	protoc -I=./ --go_out=./lib/go --java_out=./lib/java --cpp_out=./lib/cpp ./csi.proto
